@@ -83,4 +83,18 @@ describe('Central de Atendimento ao Cliente TAT', () => {
     cy.get('#product').select(1).should('have.value', 'blog')
   });
 
+  it('Aula 4 Ex 1: Marca o tipo de atendimento "Feedback"', () => {
+    cy.get('input[name="atendimento-tat"]').check().should('be.checked')
+    // ou cy.get('input[type="radio"][value="feedback"]').check()
+  });
+
+  it('Aula 4 Ex 2: Marca cada tipo de atendimento', () => {
+    cy.get('input[type="radio"]')
+      .each(typeOfService => {
+        cy.wrap(typeOfService)
+          .check()
+            .should('be.checked')
+      })
+  });
+
 })
