@@ -5,7 +5,7 @@ describe('Central de Atendimento ao Cliente TAT', () => {
     cy.title().should('eq', 'Central de Atendimento ao Cliente TAT')
   });
   
-  it('Ex 1: Preenche os campos obrigatórios e envia o formulário', () => {
+  it('Aula 2 Ex 1: Preenche os campos obrigatórios e envia o formulário', () => {
 
     const longText = Cypress._.repeat('abcdefghiklmnopqrstuvwxyz', 10)
 
@@ -17,7 +17,7 @@ describe('Central de Atendimento ao Cliente TAT', () => {
     cy.get('.success').should('be.visible')
   })
 
-  it('Ex 2: Exibe mensagem de erro ao submeter o formulário com um email com formatação inválida', () => {
+  it('Aula 2 Ex 2: Exibe mensagem de erro ao submeter o formulário com um email com formatação inválida', () => {
     cy.get('#firstName').type('Bruno')
     cy.get('#lastName').type('Noberto')
     cy.get('#email').type('bruno@noberto,com')
@@ -26,11 +26,11 @@ describe('Central de Atendimento ao Cliente TAT', () => {
     cy.get('.error').should('be.visible')
   });
 
-  it('Ex 3: Campo telefone fica vazio ao adicionar valor nao numerico', () => {
+  it('Aula 2 Ex 3: Campo telefone fica vazio ao adicionar valor nao numerico', () => {
     cy.get('#phone').type('abc').should('have.value', '')
   });
 
-  it('Ex 4: Exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário', () => {
+  it('Aula 2 Ex 4: Exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário', () => {
     cy.get('#firstName').type('Bruno')
     cy.get('#lastName').type('Noberto')
     cy.get('#email').type('bruno@noberto.com')
@@ -40,7 +40,7 @@ describe('Central de Atendimento ao Cliente TAT', () => {
     cy.get('.error').should('be.visible')
   });
 
-  it('Ex 5: Preencher e limpar os campos nome, sobrenome, email e telefone', () => {
+  it('Aula 2 Ex 5: Preencher e limpar os campos nome, sobrenome, email e telefone', () => {
     // encadeamento
     cy.get('#firstName')
       .type('Bruno')
@@ -61,14 +61,26 @@ describe('Central de Atendimento ao Cliente TAT', () => {
     cy.get('@cmpTelefone').clear().should('have.value', '')
   });
 
-  it('Ex 6: Exibe mensagem de erro ao submeter o formulário sem preencher os campos obrigatórios', () => {
+  it('Aula 2 Ex 6: Exibe mensagem de erro ao submeter o formulário sem preencher os campos obrigatórios', () => {
     cy.get('button[type=submit]').click()
     cy.get('.error').should('be.visible')
   });
 
-  it('Ex 7: Envia o formuário com sucesso usando um comando customizado', () => {
+  it('Aula 2 Ex 7: Envia o formuário com sucesso usando um comando customizado', () => {
     cy.fillMandatoryFieldsAndSubmit('Bruno', 'Ricardo', 'bruno@ricardo.com', 'Teste de comandos customizados')
     cy.get('.success').should('be.visible')
+  });
+
+  it('Aula 3 Ex 1: Seleciona um produto (YouTube) por seu texto', () => {
+    cy.get('#product').select('YouTube').should('have.value', 'youtube')
+  });
+
+  it('Aula 3 Ex 2: Seleciona um produto (Mentoria) por seu valor (value)', () => {
+    cy.get('#product').select('Mentoria').should('have.value', 'mentoria')
+  });
+
+  it('Aula 3 Ex 3: Seleciona um produto (Blog) por seu índice', () => {
+    cy.get('#product').select(1).should('have.value', 'blog')
   });
 
 })
