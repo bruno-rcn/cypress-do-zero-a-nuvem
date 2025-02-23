@@ -149,7 +149,7 @@ describe('Central de Atendimento ao Cliente TAT', () => {
     cy.contains('h1', 'CAC TAT - Política de Privacidade').should('be.visible')
   });
 
-  it.only('Aula 7 Ex 3: Testa a página da política de privacidade de forma independente', () => {
+  it('Aula 7 Ex 3: Testa a página da política de privacidade de forma independente', () => {
     cy.visit('./src/privacy.html')
     cy.contains('h1', 'CAC TAT - Política de Privacidade').should('be.visible')
   });
